@@ -44,23 +44,24 @@ var setStateResults = function(state){
     theStates[state].winner = null;
  
     if (diana.electionResults[state] > carol.electionResults[state]) {
-        
         theStates[state].winner = diana; 
- 
     } else if (diana.electionResults[state] < carol.electionResults[state]) {
- 
         theStates[state].winner = carol;
- 
     }
+  
+  var stateWinner = theStates[state].winner;
+ 
+if (stateWinner !== null) {
+    theStates[state].rgbColor = stateWinner.partyColor;
+} else {
+    theStates[state].rgbColor = [11,32,57];
+}
+  
 }
 
 
 diana.tallyVotes();
 carol.tallyVotes();
-
-console.log(diana.totalVotes);
-console.log(carol.totalVotes);
-
 
 var winner = "";
 
@@ -72,5 +73,10 @@ if (diana.totalVotes > carol.totalVotes) {
     winner = "Draw.";
   }
 
-console.log("And the winner is..." + winner + "!!!");
-
+var countryInfoTable = document.getElementById('countryResults');
+ 
+countryInfoTable.children[0].children[0].children[0].innerText = diana.name;
+countryInfoTable.children[0].children[0].children[1].innerText = diana.totalVotes;
+countryInfoTable.children[0].children[0].children[2].innerText = carol.name;
+countryInfoTable.children[0].children[0].children[3].innerText = carol.totalVotes;
+countryInfoTable.children[0].children[0].children[5].innerText = winner;
