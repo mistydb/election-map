@@ -39,6 +39,8 @@ carol.electionResults[4] = 38;
 diana.electionResults[43] = 11;
 carol.electionResults[43] = 27;
 
+
+
 var setStateResults = function(state){
  
     theStates[state].winner = null;
@@ -56,13 +58,10 @@ if (stateWinner !== null) {
 } else {
     theStates[state].rgbColor = [11,32,57];
 }
-  
-}
-
-var stateInfoTable = document.getElementById('stateResults');
+  var stateInfoTable = document.getElementById('stateResults');
 
 var header = stateInfoTable.children[0];
-var body = stateInfoTable.childre[1];
+var body = stateInfoTable.children[1];
 var stateName = header.children[0].children[0];
 var stateAbbrev = header.children[0].children[1];
 var candidate1Name = body.children[0].children[0];
@@ -71,7 +70,20 @@ var candidate1Results = body.children[0].children[1];
 var candidate2Results = body.children[1].children[1];
 var winnerName = body.children[2].children[1];
 stateName.innerText = theStates[state].nameFull;
-
+stateAbbrev.innerText = "(" +theStates[state].nameAbbrev + ")";
+ 
+candidate1Name.innerText = diana.name;
+candidate2Name.innerText = carol.name;
+ 
+candidate1Results.innerText = diana.electionResults[state];
+candidate2Results.innerText = carol.electionResults[state];
+ 
+if (theStates[state].winner === null){
+    winnerName.innerText = "DRAW";
+} else {
+    winnerName.innerText = theStates[state].winner.name;
+}
+};
 
 diana.tallyVotes();
 carol.tallyVotes();
