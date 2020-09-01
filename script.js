@@ -59,9 +59,23 @@ if (stateWinner !== null) {
   
 }
 
+var stateInfoTable = document.getElementById('stateResults');
+
+var header = stateInfoTable.children[0];
+var body = stateInfoTable.childre[1];
+var stateName = header.children[0].children[0];
+var stateAbbrev = header.children[0].children[1];
+var candidate1Name = body.children[0].children[0];
+var candidate2Name = body.children[1].children[0];
+var candidate1Results = body.children[0].children[1];
+var candidate2Results = body.children[1].children[1];
+var winnerName = body.children[2].children[1];
+stateName.innerText = theStates[state].nameFull;
+
 
 diana.tallyVotes();
 carol.tallyVotes();
+
 
 var winner = "";
 
